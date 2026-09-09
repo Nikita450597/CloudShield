@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CloudShield — Admin Security Center</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(59, 130, 246, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.035) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glow {
+            box-shadow:
+                0 0 80px rgba(37, 99, 235, 0.10),
+                inset 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        .sidebar-active {
+            background: linear-gradient(
+                90deg,
+                rgba(37, 99, 235, 0.22),
+                rgba(37, 99, 235, 0.05)
+            );
+            border-left: 2px solid #3b82f6;
+        }
+
+        .scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+
+<body class="bg-[#050914] text-slate-200 min-h-screen">
+
+<div class="flex min-h-screen">
+
+
+    <!-- ================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ================================================= -->
+
+    <aside class="hidden lg:flex w-[250px] shrink-0 border-r border-slate-800/70 bg-[#070c18] flex-col">
+
+        <!-- LOGO -->
+
+        <div class="h-20 flex items-center px-7 border-b border-slate-800/60">
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-10 h-10 rounded-xl
+                            bg-blue-600/15
+                            border border-blue-500/30
+                            flex items-center justify-center">
+
+                    <i data-lucide="shield-check"
+                       class="w-6 h-6 text-blue-400">
+                    </i>
+
+                </div>
+
+                <div>
+
+                    <div class="font-semibold text-lg tracking-tight text-white">
+                        CloudShield
+                    </div>
+
+                    <div class="text-[10px] text-slate-500 tracking-widest uppercase">
+                        Cloud Security
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="flex-1 px-4 py-6 space-y-1">
+
+            <p class="px-3 mb-3 text-[10px]
+                      uppercase tracking-[0.18em]
+                      text-slate-600 font-semibold">
+                Overview
+            </p>
+
+
+            <a id="nav-dashboard" href="#" class="sidebar-active flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-sm text-white">
+
+                <i data-lucide="layout-dashboard"
+                   class="w-[18px] h-[18px] text-blue-400">
+                </i>
+
+                Dashboard
+
+            </a>
+
+
+            <a id="nav-profile" href="#" class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-sm text-slate-400
+                      hover:bg-slate-800/50
+                      hover:text-white transition">
+
+                <i data-lucide="user-round"
+                   class="w-[18px]">
+                </i>
+
+                My Profile
+
+            </a>
+
+
+            <p class="px-3 mt-7 mb-3 text-[10px]
+                      uppercase tracking-[0.18em]
+                      text-slate-600 font-semibold">
+                Security
+            </p>
+
+
+            <a id="nav-alerts" href="#" class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-sm text-slate-400
+                      hover:bg-slate-800/50
+                      hover:text-white transition">
+
+                <i data-lucide="shield-alert"
+                   class="w-[18px]">
+                </i>
+
+                Security Alerts
+
+                <span id="alertBadge" class="ml-auto
+                             bg-red-500/15
+                             text-red-400
+                             text-[10px]
+                             px-2 py-0.5
+                             rounded-full">
+                    0
+                </span>
+
+            </a>
+
+
+            <a id="nav-logs" href="#" class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-sm text-slate-400
+                      hover:bg-slate-800/50
+                      hover:text-white transition">
+
+                <i data-lucide="activity"
+                   class="w-[18px]">
+                </i>
+
+                Activity Logs
+
+            </a>
+
+
+            <a id="nav-tests" href="#" class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-sm text-slate-400
+                      hover:bg-slate-800/50
+                      hover:text-white transition">
+
+                <i data-lucide="flask-conical"
+                   class="w-[18px]">
+                </i>
+
+                Security Tests
+
+            </a>
+
+
+            <p class="px-3 mt-7 mb-3 text-[10px]
+                      uppercase tracking-[0.18em]
+                      text-slate-600 font-semibold">
+                Management
+            </p>
+
+
+            <a id="nav-users" href="#" class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-sm text-slate-400
+                      hover:bg-slate-800/50
+                      hover:text-white transition">
+
+                <i data-lucide="users"
+                   class="w-[18px]">
+                </i>
+
+                User Management
+
+            </a>
+
+
+            <a id="nav-files" href="#" class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-sm text-slate-400
+                      hover:bg-slate-800/50
+                      hover:text-white transition">
+
+                <i data-lucide="folder-lock"
+                   class="w-[18px]">
+                </i>
+
+                Secure Files
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="p-4 border-t border-slate-800/60">
+
+            <button
+                id="logoutBtn"
+                class="w-full flex items-center gap-3
+                       px-3 py-2.5
+                       rounded-lg
+                       text-sm text-slate-400
+                       hover:bg-red-500/10
+                       hover:text-red-400
+                       transition">
+
+                <i data-lucide="log-out"
+                   class="w-[18px]">
+                </i>
+
+                Sign out
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================================================= -->
+    <!-- MAIN -->
+    <!-- ================================================= -->
+
+    <main class="flex-1 min-w-0 grid-bg">
+
+
+        <!-- TOP BAR -->
+
+        <header class="relative z-[60] h-20
+                       border-b border-slate-800/60
+                       bg-[#070c18]/80
+                       backdrop-blur-xl
+                       flex items-center
+                       justify-between
+                       px-5 md:px-8">
+
+            <!-- SEARCH -->
+
+            <div class="relative hidden md:block w-[360px]">
+
+                <i data-lucide="search"
+                   class="absolute left-3 top-1/2
+                          -translate-y-1/2
+                          w-4 h-4
+                          text-slate-600">
+                </i>
+
+                <input
+                    id="globalSearch"
+                    type="text"
+                    placeholder="Search users, files, logs..."
+                    class="w-full
+                           bg-slate-900/70
+                           border border-slate-800
+                           rounded-xl
+                           py-2.5 pl-10 pr-4
+                           text-sm
+                           text-white
+                           placeholder:text-slate-500
+                           caret-blue-400
+                           outline-none
+                           focus:border-blue-500/50
+                           transition"
+                    style="color:#f8fafc !important; caret-color:#60a5fa; -webkit-text-fill-color:#f8fafc;">
+
+            </div>
+
+
+            <!-- TOP RIGHT -->
+
+            <div class="flex items-center gap-5 ml-auto">
+
+                <button id="themeBtn" title="Toggle theme"
+                    class="text-slate-500
+                           hover:text-white
+                           transition">
+
+                    <i data-lucide="sun"
+                       class="w-5">
+                    </i>
+
+                </button>
+
+
+                <button id="bellBtn" title="Security alerts"
+                    class="relative
+                           text-slate-500
+                           hover:text-white
+                           transition">
+
+                    <i data-lucide="bell"
+                       class="w-5">
+                    </i>
+
+                    <span
+                        class="absolute -top-1 -right-1
+                               w-2 h-2
+                               rounded-full
+                               bg-red-500
+                               ring-2 ring-[#070c18]">
+                    </span>
+
+                </button>
+
+
+                <div class="h-7 w-px bg-slate-800"></div>
+
+
+                <div class="flex items-center gap-3">
+
+                    <div
+                        class="w-9 h-9
+                               rounded-full
+                               bg-gradient-to-br
+                               from-blue-500
+                               to-indigo-600
+                               flex items-center
+                               justify-center
+                               font-semibold
+                               text-white">
+
+                        N
+
+                    </div>
+
+                    <div class="hidden sm:block">
+
+                        <div>
+    <p id="userEmail" class="text-sm font-medium text-white">
+        Loading...
+    </p>
+
+    <p id="userRole" class="text-[10px] uppercase tracking-wider text-blue-400 mt-0.5">
+        Loading...
+    </p>
+</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- CONTENT -->
+
+        <div class="p-5 md:p-8 max-w-[1600px] mx-auto">
+
+
+            <!-- PAGE HEADING -->
+
+            <div class="flex flex-col md:flex-row
+                        md:items-end
+                        md:justify-between
+                        gap-4 mb-7">
+
+                <div>
+
+                    <p class="text-[10px]
+                              uppercase
+                              tracking-[0.2em]
+                              text-blue-400
+                              font-semibold mb-2">
+                        Security Center
+                    </p>
+
+                    <h1 class="text-3xl
+                               md:text-4xl
+                               font-semibold
+                               tracking-tight
+                               text-white">
+                        Dashboard
+                    </h1>
+
+                    <p class="mt-2
+                              text-sm
+                              text-slate-500">
+                        Monitor your cloud environment and security posture.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="flex items-center gap-2
+                           px-3 py-2
+                           rounded-lg
+                           border border-emerald-500/20
+                           bg-emerald-500/5">
+
+                    <span
+                        class="w-2 h-2
+                               rounded-full
+                               bg-emerald-400
+                               shadow-[0_0_10px_rgba(52,211,153,.7)]">
+                    </span>
+
+                    <span class="text-xs text-emerald-400 font-medium">
+                        All systems operational
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HERO -->
+
+            <section
+                class="relative overflow-hidden
+                       rounded-2xl
+                       border border-blue-500/15
+                       bg-gradient-to-br
+                       from-blue-600/10
+                       via-slate-900/80
+                       to-indigo-600/5
+                       p-6 md:p-8 mb-6 glow">
+
+                <div
+                    class="absolute
+                           -right-24
+                           -top-24
+                           w-72 h-72
+                           rounded-full
+                           bg-blue-600/10
+                           blur-3xl">
+                </div>
+
+                <div class="relative">
+
+                    <div class="flex items-start
+                                justify-between">
+
+                        <div>
+
+                            <div
+                                class="flex items-center gap-2
+                                       text-blue-400
+                                       text-[10px]
+                                       uppercase
+                                       tracking-[0.2em]
+                                       font-semibold">
+
+                                <i data-lucide="sparkles"
+                                   class="w-3.5">
+                                </i>
+
+                                CloudShield Protection
+
+                            </div>
+
+                            <h2 class="text-2xl md:text-3xl
+                                       font-semibold
+                                       text-white
+                                       mt-3">
+                                Your cloud environment is protected.
+                            </h2>
+
+                            <p class="text-sm
+                                      text-slate-400
+                                      mt-2
+                                      max-w-xl">
+                                Authentication, access control and
+                                cloud security rules are actively
+                                protecting your resources.
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="hidden md:flex
+                                   w-16 h-16
+                                   rounded-2xl
+                                   bg-blue-500/10
+                                   border border-blue-400/20
+                                   items-center
+                                   justify-center">
+
+                            <i data-lucide="shield-check"
+                               class="w-8 h-8
+                                      text-blue-400">
+                            </i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="flex flex-wrap gap-3 mt-7">
+
+                        <div
+                            class="flex items-center gap-2
+                                   px-3 py-2
+                                   rounded-lg
+                                   bg-slate-950/40
+                                   border border-slate-800">
+
+                            <i data-lucide="lock-keyhole"
+                               class="w-4 text-blue-400">
+                            </i>
+
+                            <span class="text-xs text-slate-300">
+                                Authentication active
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="flex items-center gap-2
+                                   px-3 py-2
+                                   rounded-lg
+                                   bg-slate-950/40
+                                   border border-slate-800">
+
+                            <i data-lucide="shield"
+                               class="w-4 text-emerald-400">
+                            </i>
+
+                            <span class="text-xs text-slate-300">
+                                Firestore protected
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="flex items-center gap-2
+                                   px-3 py-2
+                                   rounded-lg
+                                   bg-slate-950/40
+                                   border border-slate-800">
+
+                            <i data-lucide="scan-eye"
+                               class="w-4 text-indigo-400">
+                            </i>
+
+                            <span class="text-xs text-slate-300">
+                                Monitoring enabled
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- STAT CARDS -->
+
+            <section
+                class="grid grid-cols-1
+                       sm:grid-cols-2
+                       xl:grid-cols-4
+                       gap-4 mb-6">
+
+
+                <!-- USERS -->
+
+                <div
+                    class="glass rounded-2xl
+                           p-5 hover:border-blue-500/25
+                           transition">
+
+                    <div class="flex justify-between">
+
+                        <div
+                            class="w-10 h-10
+                                   rounded-xl
+                                   bg-blue-500/10
+                                   flex items-center
+                                   justify-center">
+
+                            <i data-lucide="users"
+                               class="w-5 text-blue-400">
+                            </i>
+
+                        </div>
+
+                        <span
+                            class="text-[10px]
+                                   text-emerald-400
+                                   bg-emerald-500/10
+                                   px-2 py-1
+                                   rounded-md">
+                            +12%
+                        </span>
+
+                    </div>
+
+                    <p class="text-xs
+                              text-slate-500
+                              mt-5">
+                        Total users
+                    </p>
+
+                    <p class="text-3xl
+                              font-semibold
+                              text-white
+                              mt-1">
+                        <span id="totalUsers">0</span>
+                    </p>
+
+                    <p class="text-[11px]
+                              text-slate-600
+                              mt-1">
+                        3 new this week
+                    </p>
+
+                </div>
+
+
+
+                <!-- ALLOWED -->
+
+                <div
+                    class="glass rounded-2xl
+                           p-5 hover:border-emerald-500/25
+                           transition">
+
+                    <div class="flex justify-between">
+
+                        <div
+                            class="w-10 h-10
+                                   rounded-xl
+                                   bg-emerald-500/10
+                                   flex items-center
+                                   justify-center">
+
+                            <i data-lucide="circle-check"
+                               class="w-5 text-emerald-400">
+                            </i>
+
+                        </div>
+
+                        <span
+                            class="text-[10px]
+                                   text-emerald-400
+                                   bg-emerald-500/10
+                                   px-2 py-1
+                                   rounded-md">
+                            +8%
+                        </span>
+
+                    </div>
+
+                    <p class="text-xs
+                              text-slate-500
+                              mt-5">
+                        Allowed requests
+                    </p>
+
+                    <p class="text-3xl
+                              font-semibold
+                              text-white
+                              mt-1">
+                        <span id="allowedRequests">0</span>
+                    </p>
+
+                    <p class="text-[11px]
+                              text-slate-600
+                              mt-1">
+                        Successful access
+                    </p>
+
+                </div>
+
+
+
+                <!-- BLOCKED -->
+
+                <div
+                    class="glass rounded-2xl
+                           p-5 hover:border-red-500/25
+                           transition">
+
+                    <div class="flex justify-between">
+
+                        <div
+                            class="w-10 h-10
+                                   rounded-xl
+                                   bg-red-500/10
+                                   flex items-center
+                                   justify-center">
+
+                            <i data-lucide="shield-x"
+                               class="w-5 text-red-400">
+                            </i>
+
+                        </div>
+
+                        <span
+                            class="text-[10px]
+                                   text-red-400
+                                   bg-red-500/10
+                                   px-2 py-1
+                                   rounded-md">
+                            +3%
+                        </span>
+
+                    </div>
+
+                    <p class="text-xs
+                              text-slate-500
+                              mt-5">
+                        Blocked requests
+                    </p>
+
+                    <p class="text-3xl
+                              font-semibold
+                              text-white
+                              mt-1">
+                        <span id="blockedRequests">0</span>
+                    </p>
+
+                    <p class="text-[11px]
+                              text-slate-600
+                              mt-1">
+                        Threats prevented
+                    </p>
+
+                </div>
+
+
+
+                <!-- SECURITY SCORE -->
+
+                <div
+                    class="glass rounded-2xl
+                           p-5 hover:border-cyan-500/25
+                           transition">
+
+                    <div class="flex items-center gap-4">
+
+                        <div
+                            class="relative
+                                   w-14 h-14
+                                   rounded-full
+                                   flex items-center
+                                   justify-center
+                                   bg-slate-900
+                                   border-4
+                                   border-emerald-400/80">
+
+                            <span
+                                class="text-sm
+                                       font-semibold
+                                       text-white">
+                                <span id="adminScore">0</span>
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <p class="text-xs text-slate-500">
+                                Security score
+                            </p>
+
+                            <p class="text-lg
+                                      font-semibold
+                                      text-emerald-400
+                                      mt-1">
+                                Excellent
+                            </p>
+
+                            <p class="text-[10px]
+                                      text-emerald-400/70">
+                                ↑ 5% this week
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- TWO COLUMN -->
+
+            <section
+                class="grid grid-cols-1
+                       xl:grid-cols-3
+                       gap-5 mb-6">
+
+
+                <!-- ACCESS ACTIVITY -->
+
+                <div
+                    class="xl:col-span-2
+                           glass rounded-2xl p-6">
+
+                    <div class="flex
+                                items-start
+                                justify-between
+                                mb-6">
+
+                        <div>
+
+                            <h3 class="font-semibold
+                                       text-white">
+                                Access Activity
+                            </h3>
+
+                            <p class="text-xs
+                                      text-slate-600
+                                      mt-1">
+                                Requests over the last 7 days
+                            </p>
+
+                        </div>
+
+                        <div class="flex gap-4 text-[10px]">
+
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                Allowed
+                            </span>
+
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                Blocked
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CSS CHART -->
+
+                    <div id="accessChart" class="h-52 flex items-end gap-3 border-b border-slate-800 px-2"></div>
+
+                    <div class="grid
+                                grid-cols-7
+                                text-[10px]
+                                text-slate-600
+                                text-center
+                                mt-3">
+
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                        <span>Sun</span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- THREAT OVERVIEW -->
+
+                <div
+                    class="glass rounded-2xl p-6">
+
+                    <div class="flex
+                                justify-between
+                                items-center">
+
+                        <div>
+
+                            <h3 class="font-semibold text-white">
+                                Threat Overview
+                            </h3>
+
+                            <p class="text-xs
+                                      text-slate-600
+                                      mt-1">
+                                This week
+                            </p>
+
+                        </div>
+
+                        <i data-lucide="more-horizontal"
+                           class="w-5 text-slate-600">
+                        </i>
+
+                    </div>
+
+
+                    <div class="flex
+                                items-center
+                                justify-center
+                                py-7">
+
+                        <div
+                            class="relative
+                                   w-36 h-36
+                                   rounded-full
+                                   flex items-center
+                                   justify-center"
+                            style="
+                                background:
+                                conic-gradient(
+                                    #ef4444 0deg 115deg,
+                                    #14b8a6 115deg 245deg,
+                                    #6366f1 245deg 320deg,
+                                    #f59e0b 320deg 360deg
+                                );
+                            ">
+
+                            <div
+                                class="w-24 h-24
+                                       rounded-full
+                                       bg-[#0b1220]
+                                       flex flex-col
+                                       items-center
+                                       justify-center">
+
+                                <span class="text-2xl
+                                             font-semibold
+                                             text-white">
+                                    <span id="threatTotal">0</span>
+                                </span>
+
+                                <span class="text-[10px]
+                                             text-slate-600">
+                                    Threats
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="space-y-3">
+
+                        <div class="flex
+                                    items-center
+                                    justify-between
+                                    text-xs">
+
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                Failed logins
+                            </span>
+
+                            <span class="text-white"><span id="failedThreats">0</span></span>
+
+                        </div>
+
+
+                        <div class="flex
+                                    items-center
+                                    justify-between
+                                    text-xs">
+
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                                Unauthorized access
+                            </span>
+
+                            <span class="text-white"><span id="unauthorizedThreats">0</span></span>
+
+                        </div>
+
+
+                        <div class="flex
+                                    items-center
+                                    justify-between
+                                    text-xs">
+
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+                                Suspicious activity
+                            </span>
+
+                            <span class="text-white"><span id="suspiciousThreats">0</span></span>
+
+                        </div>
+
+
+                        <div class="flex
+                                    items-center
+                                    justify-between
+                                    text-xs">
+
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                                Permission violation
+                            </span>
+
+                            <span class="text-white"><span id="permissionThreats">0</span></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- EMPLOYEE SECURITY OVERVIEW -->
+
+            <section class="glass rounded-2xl overflow-hidden mb-6">
+                <div class="p-6 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-semibold text-white">Employee Security Overview</h3>
+                        <p class="text-xs text-slate-600 mt-1">Current security posture across employee accounts</p>
+                    </div>
+                    <span class="text-[10px] px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400">LIVE</span>
+                </div>
+                <div class="overflow-x-auto scrollbar">
+                    <table class="w-full text-left">
+                        <thead><tr class="border-y border-slate-800/70 text-[9px] uppercase tracking-widest text-slate-600">
+                            <th class="px-6 py-3 font-medium">Employee</th><th class="px-6 py-3 font-medium">Role</th><th class="px-6 py-3 font-medium">Security Score</th><th class="px-6 py-3 font-medium">Blocked</th><th class="px-6 py-3 font-medium">Files</th>
+                        </tr></thead>
+                        <tbody id="employeeSecurityBody" class="text-xs"><tr><td colspan="5" class="px-6 py-8 text-center text-slate-600">Loading employee security...</td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="mb-6">
+                <div
+                        class="rounded-2xl
+                               border border-blue-500/15
+                               bg-gradient-to-br
+                               from-blue-500/10
+                               to-indigo-500/5
+                               p-6">
+
+                        <div class="flex gap-4">
+
+                            <div
+                                class="w-10 h-10
+                                       shrink-0
+                                       rounded-xl
+                                       bg-amber-400/10
+                                       flex items-center
+                                       justify-center">
+
+                                <i data-lucide="lightbulb"
+                                   class="w-5 text-amber-400">
+                                </i>
+
+                            </div>
+
+                            <div>
+
+                                <p class="text-sm
+                                          font-medium
+                                          text-white">
+                                    Security tip
+                                </p>
+
+                                <p class="text-xs
+                                          leading-relaxed
+                                          text-slate-500
+                                          mt-2">
+                                    Use strong unique passwords and
+                                    enable multi-factor authentication
+                                    for sensitive accounts.
+                                </p>
+
+                            </div>
+
+                        </div>
+            </section>
+
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<!-- CLOUDSHIELD SIDE PANEL -->
+<div id="sidePanel" class="fixed inset-0 z-50 hidden">
+  <div id="panelBackdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  <aside id="panelCard" class="absolute right-0 top-0 h-full w-full max-w-xl bg-[#070c18] border-l border-slate-800 shadow-2xl overflow-y-auto">
+    <div class="sticky top-0 z-10 bg-[#070c18]/95 backdrop-blur-xl border-b border-slate-800 px-6 py-5 flex items-center justify-between">
+      <div><p id="panelEyebrow" class="text-[10px] uppercase tracking-[0.2em] text-blue-400 font-semibold">CloudShield</p><h2 id="panelTitle" class="text-xl font-semibold text-white mt-1">Panel</h2></div>
+      <button id="panelClose" class="w-9 h-9 rounded-lg border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition">✕</button>
+    </div>
+    <div id="panelContent" class="p-6"></div>
+  </aside>
+</div>
+
+<!-- FILE ACCESS MODAL -->
+<div id="fileAccessModal" class="fixed inset-0 z-[60] hidden">
+ <div id="fileModalBackdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+ <div class="relative mx-auto mt-20 w-[calc(100%-2rem)] max-w-lg rounded-2xl border border-slate-800 bg-[#0a1020] shadow-2xl">
+  <div class="p-5 border-b border-slate-800 flex items-center justify-between"><h3 id="fileModalTitle" class="font-semibold text-white">Manage File Access</h3><button id="fileModalClose" class="text-slate-400 hover:text-white">✕</button></div>
+  <div id="fileModalContent" class="p-5"></div>
+ </div>
+</div>
+
+<!-- ================================================= -->
+<!-- FIREBASE -->
+<!-- ================================================= -->
+
+<script type="module" src="cloudshield-admin.js"></script>
+
+</body>
+</html>

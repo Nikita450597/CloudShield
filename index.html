@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CloudShield | Secure Cloud Access</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+                         BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+            background-size: 45px 45px;
+        }
+
+        .glow {
+            box-shadow:
+                0 0 80px rgba(59, 130, 246, 0.12),
+                0 0 30px rgba(6, 182, 212, 0.06);
+        }
+
+        .input-focus:focus {
+            border-color: rgba(59, 130, 246, 0.7);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.10);
+            outline: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-[#05070d] text-white overflow-x-hidden">
+
+    <!-- Background -->
+    <div class="fixed inset-0 grid-bg pointer-events-none"></div>
+
+    <!-- Ambient glow -->
+    <div class="fixed top-[-180px] left-1/2 -translate-x-1/2
+                w-[600px] h-[600px]
+                bg-blue-600/10 blur-[140px]
+                rounded-full pointer-events-none">
+    </div>
+
+    <div class="fixed bottom-[-250px] right-[-150px]
+                w-[500px] h-[500px]
+                bg-cyan-500/8 blur-[140px]
+                rounded-full pointer-events-none">
+    </div>
+
+
+    <!-- Main -->
+    <main class="relative min-h-screen flex items-center justify-center px-5 py-10">
+
+        <div class="w-full max-w-[1100px] grid lg:grid-cols-2
+                    gap-12 lg:gap-20 items-center">
+
+
+            <!-- LEFT SIDE -->
+            <section class="hidden lg:block">
+
+                <!-- Logo -->
+                <div class="flex items-center gap-3 mb-10">
+
+                    <div class="w-11 h-11 rounded-xl
+                                bg-gradient-to-br from-blue-500 to-cyan-400
+                                flex items-center justify-center
+                                shadow-lg shadow-blue-500/20">
+
+                        <i data-lucide="shield-check"
+                           class="w-6 h-6 text-white">
+                        </i>
+
+                    </div>
+
+                    <div>
+                        <h1 class="text-xl font-bold tracking-tight">
+                            CloudShield
+                        </h1>
+
+                        <p class="text-xs text-slate-500">
+                            Cloud Security Platform
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Main text -->
+                <div class="max-w-lg">
+
+                    <div class="inline-flex items-center gap-2
+                                px-3 py-1.5 mb-6
+                                rounded-full
+                                border border-blue-500/20
+                                bg-blue-500/5
+                                text-blue-400 text-xs font-medium">
+
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+
+                        Cloud security monitoring
+                    </div>
+
+
+                    <h2 class="text-5xl font-semibold leading-[1.08]
+                               tracking-tight mb-6">
+
+                        Secure your cloud.
+                        <span class="text-transparent bg-clip-text
+                                     bg-gradient-to-r from-blue-400
+                                     to-cyan-300">
+                            Control your access.
+                        </span>
+
+                    </h2>
+
+
+                    <p class="text-slate-400 text-lg leading-relaxed mb-10">
+
+                        CloudShield provides centralized identity management,
+                        role-based access control, security monitoring and
+                        threat detection for your cloud environment.
+
+                    </p>
+
+
+                    <!-- Feature list -->
+
+                    <div class="space-y-5">
+
+                        <div class="flex items-start gap-4">
+
+                            <div class="w-10 h-10 rounded-lg
+                                        bg-white/[0.04]
+                                        border border-white/[0.07]
+                                        flex items-center justify-center
+                                        shrink-0">
+
+                                <i data-lucide="lock-keyhole"
+                                   class="w-5 h-5 text-blue-400">
+                                </i>
+
+                            </div>
+
+                            <div>
+                                <h3 class="text-sm font-medium text-slate-200">
+                                    Identity & Access Control
+                                </h3>
+
+                                <p class="text-sm text-slate-500 mt-1">
+                                    Control who can access your cloud resources.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="flex items-start gap-4">
+
+                            <div class="w-10 h-10 rounded-lg
+                                        bg-white/[0.04]
+                                        border border-white/[0.07]
+                                        flex items-center justify-center
+                                        shrink-0">
+
+                                <i data-lucide="activity"
+                                   class="w-5 h-5 text-cyan-400">
+                                </i>
+
+                            </div>
+
+                            <div>
+                                <h3 class="text-sm font-medium text-slate-200">
+                                    Security Monitoring
+                                </h3>
+
+                                <p class="text-sm text-slate-500 mt-1">
+                                    Track access attempts and suspicious activity.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="flex items-start gap-4">
+
+                            <div class="w-10 h-10 rounded-lg
+                                        bg-white/[0.04]
+                                        border border-white/[0.07]
+                                        flex items-center justify-center
+                                        shrink-0">
+
+                                <i data-lucide="shield-alert"
+                                   class="w-5 h-5 text-purple-400">
+                                </i>
+
+                            </div>
+
+                            <div>
+                                <h3 class="text-sm font-medium text-slate-200">
+                                    Threat Detection
+                                </h3>
+
+                                <p class="text-sm text-slate-500 mt-1">
+                                    Simulate and detect unauthorized access attempts.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- RIGHT SIDE -->
+            <section class="w-full max-w-md mx-auto">
+
+                <!-- Mobile logo -->
+                <div class="lg:hidden flex items-center justify-center
+                            gap-3 mb-8">
+
+                    <div class="w-10 h-10 rounded-xl
+                                bg-gradient-to-br from-blue-500 to-cyan-400
+                                flex items-center justify-center">
+
+                        <i data-lucide="shield-check"
+                           class="w-5 h-5">
+                        </i>
+
+                    </div>
+
+                    <div>
+                        <h1 class="font-bold text-lg">
+                            CloudShield
+                        </h1>
+
+                        <p class="text-[11px] text-slate-500">
+                            Cloud Security Platform
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Auth card -->
+
+                <div class="bg-[#0b0f18]/90
+                            border border-white/[0.08]
+                            rounded-2xl
+                            p-7 sm:p-8
+                            backdrop-blur-xl
+                            glow">
+
+
+                    <!-- Header -->
+
+                    <div class="mb-7">
+
+                        <h2 id="authTitle"
+                            class="text-2xl font-semibold tracking-tight">
+
+                            Welcome back
+
+                        </h2>
+
+                        <p id="authSubtitle"
+                           class="text-sm text-slate-500 mt-2">
+
+                            Sign in to access your security dashboard.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- LOGIN FORM -->
+
+                    <form id="loginForm" class="space-y-5">
+
+                        <!-- Email -->
+
+                        <div>
+
+                            <label class="block text-xs font-medium
+                                          text-slate-400 mb-2">
+
+                                Email address
+
+                            </label>
+
+                            <div class="relative">
+
+                                <i data-lucide="mail"
+                                   class="absolute left-3.5 top-1/2
+                                          -translate-y-1/2
+                                          w-4 h-4 text-slate-500">
+                                </i>
+
+                                <input
+                                    id="loginEmail"
+                                    type="email"
+                                    placeholder="you@example.com"
+                                    required
+                                    class="input-focus w-full
+                                           bg-white/[0.03]
+                                           border border-white/[0.08]
+                                           rounded-lg
+                                           pl-10 pr-4 py-3
+                                           text-sm text-white
+                                           placeholder:text-slate-600
+                                           transition">
+                            </div>
+
+                        </div>
+
+
+                        <!-- Password -->
+
+                        <div>
+
+                            <div class="flex justify-between items-center mb-2">
+
+                                <label class="text-xs font-medium
+                                              text-slate-400">
+
+                                    Password
+
+                                </label>
+
+                                <button
+                                    type="button"
+                                    class="text-xs text-blue-400
+                                           hover:text-blue-300">
+
+                                    Forgot password?
+
+                                </button>
+
+                            </div>
+
+
+                            <div class="relative">
+
+                                <i data-lucide="key-round"
+                                   class="absolute left-3.5 top-1/2
+                                          -translate-y-1/2
+                                          w-4 h-4 text-slate-500">
+                                </i>
+
+                                <input
+                                    id="loginPassword"
+                                    type="password"
+                                    placeholder="Enter your password"
+                                    required
+                                    class="input-focus w-full
+                                           bg-white/[0.03]
+                                           border border-white/[0.08]
+                                           rounded-lg
+                                           pl-10 pr-11 py-3
+                                           text-sm text-white
+                                           placeholder:text-slate-600
+                                           transition">
+
+
+                                <button
+                                    type="button"
+                                    id="toggleLoginPassword"
+                                    class="absolute right-3
+                                           top-1/2 -translate-y-1/2
+                                           text-slate-500
+                                           hover:text-slate-300">
+
+                                    <i data-lucide="eye"
+                                       class="w-4 h-4">
+                                    </i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Remember -->
+
+                        <label class="flex items-center gap-2
+                                      text-xs text-slate-500 cursor-pointer">
+
+                            <input type="checkbox"
+                                   class="accent-blue-500">
+
+                            Keep me signed in
+
+                        </label>
+
+
+                        <!-- Login button -->
+
+                        <button
+                            type="submit"
+                            class="w-full
+                                   bg-gradient-to-r
+                                   from-blue-600
+                                   to-blue-500
+                                   hover:from-blue-500
+                                   hover:to-cyan-500
+                                   py-3
+                                   rounded-lg
+                                   text-sm
+                                   font-semibold
+                                   transition-all
+                                   shadow-lg
+                                   shadow-blue-500/10">
+
+                            Sign in
+
+                        </button>
+
+                    </form>
+
+
+
+                    <!-- REGISTER FORM -->
+
+                    <form id="registerForm"
+                          class="space-y-5 hidden">
+
+
+                        <div>
+
+                            <label class="block text-xs font-medium
+                                          text-slate-400 mb-2">
+
+                                Email address
+
+                            </label>
+
+                            <div class="relative">
+
+                                <i data-lucide="mail"
+                                   class="absolute left-3.5 top-1/2
+                                          -translate-y-1/2
+                                          w-4 h-4 text-slate-500">
+                                </i>
+
+                                <input
+                                    id="registerEmail"
+                                    type="email"
+                                    placeholder="you@example.com"
+                                    required
+                                    class="input-focus w-full
+                                           bg-white/[0.03]
+                                           border border-white/[0.08]
+                                           rounded-lg
+                                           pl-10 pr-4 py-3
+                                           text-sm text-white
+                                           placeholder:text-slate-600
+                                           transition">
+
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <label class="block text-xs font-medium
+                                          text-slate-400 mb-2">
+
+                                Password
+
+                            </label>
+
+                            <div class="relative">
+
+                                <i data-lucide="key-round"
+                                   class="absolute left-3.5 top-1/2
+                                          -translate-y-1/2
+                                          w-4 h-4 text-slate-500">
+                                </i>
+
+                                <input
+                                    id="registerPassword"
+                                    type="password"
+                                    placeholder="Create a password"
+                                    required
+                                    minlength="6"
+                                    class="input-focus w-full
+                                           bg-white/[0.03]
+                                           border border-white/[0.08]
+                                           rounded-lg
+                                           pl-10 pr-11 py-3
+                                           text-sm text-white
+                                           placeholder:text-slate-600
+                                           transition">
+
+                                <button
+                                    type="button"
+                                    id="toggleRegisterPassword"
+                                    class="absolute right-3
+                                           top-1/2 -translate-y-1/2
+                                           text-slate-500
+                                           hover:text-slate-300">
+
+                                    <i data-lucide="eye"
+                                       class="w-4 h-4">
+                                    </i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <label class="block text-xs font-medium
+                                          text-slate-400 mb-2">
+
+                                Confirm password
+
+                            </label>
+
+                            <input
+                                id="confirmPassword"
+                                type="password"
+                                placeholder="Confirm your password"
+                                required
+                                class="input-focus w-full
+                                       bg-white/[0.03]
+                                       border border-white/[0.08]
+                                       rounded-lg
+                                       px-4 py-3
+                                       text-sm text-white
+                                       placeholder:text-slate-600
+                                       transition">
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="w-full
+                                   bg-gradient-to-r
+                                   from-blue-600
+                                   to-blue-500
+                                   hover:from-blue-500
+                                   hover:to-cyan-500
+                                   py-3
+                                   rounded-lg
+                                   text-sm
+                                   font-semibold
+                                   transition-all
+                                   shadow-lg
+                                   shadow-blue-500/10">
+
+                            Create account
+
+                        </button>
+
+                    </form>
+
+
+
+                    <!-- MESSAGE -->
+
+                    <div id="message"
+                         class="hidden mt-5 p-3 rounded-lg
+                                text-xs border">
+                    </div>
+
+
+
+                    <!-- SWITCH LOGIN / REGISTER -->
+
+                    <div class="relative my-7">
+
+                        <div class="absolute inset-0 flex items-center">
+
+                            <div class="w-full border-t border-white/[0.07]"></div>
+
+                        </div>
+
+                        <div class="relative flex justify-center">
+
+                            <span class="bg-[#0b0f18]
+                                         px-3 text-xs text-slate-600">
+
+                                OR
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="text-center text-sm text-slate-500">
+
+                        <span id="switchText">
+                            Don't have an account?
+                        </span>
+
+                        <button
+                            id="switchAuth"
+                            type="button"
+                            class="ml-1 text-blue-400
+                                   hover:text-blue-300
+                                   font-medium">
+
+                            Create account
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Security status -->
+
+                    <div class="mt-7 pt-5
+                                border-t border-white/[0.07]
+                                flex items-center justify-center gap-2">
+
+                        <i data-lucide="shield-check"
+                           class="w-4 h-4 text-emerald-400">
+                        </i>
+
+                        <span class="text-xs text-slate-500">
+                            Protected by Firebase Authentication
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Footer -->
+
+                <p class="text-center text-xs text-slate-600 mt-6">
+
+                    CloudShield Security Platform · 2026
+
+                </p>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FIREBASE -->
+
+    <script type="module">
+
+        import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword
+        }
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+      import {
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    getDocs,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+        // Firebase configuration
+
+        const firebaseConfig = {
+  apiKey: "AIzaSyAPK7xOzqujXWkXntKz6ojnb1jZag7WW7c",
+  authDomain: "cloudshield-7081e.firebaseapp.com",
+  projectId: "cloudshield-7081e",
+  storageBucket: "cloudshield-7081e.firebasestorage.app",
+  messagingSenderId: "1065716286697",
+  appId: "1:1065716286697:web:00b489aa11c31d6b5fdc78"
+};
+
+
+        const app = initializeApp(firebaseConfig);
+
+        const auth = getAuth(app);
+
+        const db = getFirestore(app);
+
+
+
+        // Elements
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+        const switchAuth =
+            document.getElementById("switchAuth");
+
+        const switchText =
+            document.getElementById("switchText");
+
+        const authTitle =
+            document.getElementById("authTitle");
+
+        const authSubtitle =
+            document.getElementById("authSubtitle");
+
+        const message =
+            document.getElementById("message");
+
+
+
+        // Show message
+
+        function showMessage(text, type = "error") {
+
+            message.textContent = text;
+
+            message.classList.remove(
+                "hidden",
+                "border-red-500/20",
+                "bg-red-500/10",
+                "text-red-400",
+                "border-emerald-500/20",
+                "bg-emerald-500/10",
+                "text-emerald-400"
+            );
+
+
+            if (type === "success") {
+
+                message.classList.add(
+                    "border-emerald-500/20",
+                    "bg-emerald-500/10",
+                    "text-emerald-400"
+                );
+
+            } else {
+
+                message.classList.add(
+                    "border-red-500/20",
+                    "bg-red-500/10",
+                    "text-red-400"
+                );
+
+            }
+
+        }
+
+
+
+        // Switch Login/Register
+
+        switchAuth.addEventListener("click", () => {
+
+            message.classList.add("hidden");
+
+            if (loginForm.classList.contains("hidden")) {
+
+                // Switch to login
+
+                loginForm.classList.remove("hidden");
+
+                registerForm.classList.add("hidden");
+
+                authTitle.textContent = "Welcome back";
+
+                authSubtitle.textContent =
+                    "Sign in to access your security dashboard.";
+
+                switchText.textContent =
+                    "Don't have an account?";
+
+                switchAuth.textContent =
+                    "Create account";
+
+            } else {
+
+                // Switch to register
+
+                loginForm.classList.add("hidden");
+
+                registerForm.classList.remove("hidden");
+
+                authTitle.textContent =
+                    "Create your account";
+
+                authSubtitle.textContent =
+                    "Set up your secure CloudShield account.";
+
+                switchText.textContent =
+                    "Already have an account?";
+
+                switchAuth.textContent =
+                    "Sign in";
+
+            }
+
+        });
+
+
+
+        // Login
+// Login
+loginForm.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const email =
+        document.getElementById("loginEmail").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+    try {
+
+        // Authenticate user
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user = userCredential.user;
+
+        // Get user's profile from Firestore
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+            showMessage("User profile not found.");
+            return;
+        }
+
+        const userData = userSnap.data();
+        const role = userData.role || "employee";
+
+        showMessage(
+            "Authentication successful. Redirecting...",
+            "success"
+        );
+
+        // Redirect according to role
+        setTimeout(() => {
+
+            if (role === "admin") {
+                window.location.href = "admin-dashboard.html";
+            } else {
+                window.location.href = "employee-dashboard.html";
+            }
+
+        }, 700);
+
+    } catch (error) {
+
+        console.error("LOGIN ERROR:", error);
+
+        showMessage(
+            "Login failed: " + error.code
+        );
+    }
+
+});
+
+        // Register
+
+ // Register
+registerForm.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const email =
+        document.getElementById("registerEmail").value.trim();
+
+    const password =
+        document.getElementById("registerPassword").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+
+        showMessage("Passwords do not match.");
+
+        return;
+    }
+
+    try {
+
+        // Create Firebase Authentication account
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user =
+            userCredential.user;
+
+        // Create Firestore user profile
+        // Every newly registered user is an employee
+        await setDoc(
+            doc(db, "users", user.uid),
+            {
+                email: user.email,
+                role: "employee",
+                createdAt: new Date()
+            }
+        );
+
+        showMessage(
+            "Account created successfully. Redirecting...",
+            "success"
+        );
+
+        setTimeout(() => {
+
+            window.location.href =
+                "employee-dashboard.html";
+
+        }, 700);
+
+    } catch (error) {
+
+        console.error("REGISTER ERROR:", error);
+
+        showMessage(
+            "Registration failed: " + error.code
+        );
+    }
+
+});
+
+
+
+        // Password visibility
+
+        function setupPasswordToggle(buttonId, inputId) {
+
+            const button =
+                document.getElementById(buttonId);
+
+            const input =
+                document.getElementById(inputId);
+
+
+            button.addEventListener("click", () => {
+
+                const isPassword =
+                    input.type === "password";
+
+                input.type =
+                    isPassword ? "text" : "password";
+
+
+                button.innerHTML = isPassword
+
+                    ? `<i data-lucide="eye-off" class="w-4 h-4"></i>`
+
+                    : `<i data-lucide="eye" class="w-4 h-4"></i>`;
+
+
+                lucide.createIcons();
+
+            });
+
+        }
+
+
+        setupPasswordToggle(
+            "toggleLoginPassword",
+            "loginPassword"
+        );
+
+        setupPasswordToggle(
+            "toggleRegisterPassword",
+            "registerPassword"
+        );
+
+
+
+        // Initialize icons
+
+        lucide.createIcons();
+
+    </script>
+
+</body>
+</html>

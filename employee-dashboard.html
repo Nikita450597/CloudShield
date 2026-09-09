@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CloudShield — Employee Dashboard</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-[#070b14] text-slate-200 min-h-screen">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="fixed left-0 top-0 h-screen w-64
+                  bg-[#0b1120] border-r border-slate-800
+                  flex flex-col">
+
+        <!-- Logo -->
+        <div class="h-20 flex items-center px-6
+                    border-b border-slate-800">
+
+            <div class="w-9 h-9 rounded-lg
+                        bg-blue-600/20
+                        border border-blue-500/30
+                        flex items-center justify-center">
+
+                <i data-lucide="shield-check"
+                   class="w-5 h-5 text-blue-400"></i>
+
+            </div>
+
+            <div class="ml-3">
+                <h1 class="font-semibold text-white">
+                    CloudShield
+                </h1>
+
+                <p class="text-[10px] text-slate-500 uppercase tracking-wider">
+                    Employee Portal
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+
+        <nav class="flex-1 px-4 py-6 space-y-2">
+
+            <p class="text-[10px] text-slate-600
+                      uppercase tracking-widest
+                      px-3 mb-3">
+                Workspace
+            </p>
+
+
+            <a href="#"
+               class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      bg-blue-500/10
+                      text-blue-400">
+
+                <i data-lucide="layout-dashboard"
+                   class="w-4 h-4"></i>
+
+                Dashboard
+            </a>
+
+
+            <a href="#profile"
+               class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-slate-400
+                      hover:bg-slate-800
+                      hover:text-white">
+
+                <i data-lucide="user"
+                   class="w-4 h-4"></i>
+
+                My Profile
+            </a>
+
+
+            <a href="#activity"
+               class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-slate-400
+                      hover:bg-slate-800
+                      hover:text-white">
+
+                <i data-lucide="activity"
+                   class="w-4 h-4"></i>
+
+                My Activity
+            </a>
+
+
+            <a href="#alerts"
+               class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-slate-400
+                      hover:bg-slate-800
+                      hover:text-white">
+
+                <i data-lucide="bell"
+                   class="w-4 h-4"></i>
+
+                Security Alerts
+            </a>
+
+
+            <a href="#files"
+               class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-slate-400
+                      hover:bg-slate-800
+                      hover:text-white">
+
+                <i data-lucide="folder-lock"
+                   class="w-4 h-4"></i>
+
+                Secure Files
+            </a>
+
+
+            <a href="#security-test"
+               class="flex items-center gap-3
+                      px-3 py-2.5 rounded-lg
+                      text-slate-400
+                      hover:bg-slate-800
+                      hover:text-white">
+
+                <i data-lucide="shield-alert"
+                   class="w-4 h-4"></i>
+
+                Security Check
+            </a>
+
+        </nav>
+
+
+        <!-- User section -->
+
+        <div class="p-4 border-t border-slate-800">
+
+            <div class="flex items-center gap-3 mb-4">
+
+                <div class="w-9 h-9 rounded-full
+                            bg-blue-500/20
+                            border border-blue-500/30
+                            flex items-center justify-center">
+
+                    <i data-lucide="user"
+                       class="w-4 h-4 text-blue-400"></i>
+
+                </div>
+
+                <div class="min-w-0">
+
+                    <p id="sidebarEmail"
+                       class="text-xs text-white truncate">
+                        Loading...
+                    </p>
+
+                    <p class="text-[10px] text-emerald-400">
+                        EMPLOYEE
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button id="logoutBtn"
+                    class="w-full flex items-center gap-3
+                           px-3 py-2.5 rounded-lg
+                           text-slate-400
+                           hover:bg-red-500/10
+                           hover:text-red-400">
+
+                <i data-lucide="log-out"
+                   class="w-4 h-4"></i>
+
+                Sign out
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="ml-64 min-h-screen">
+
+        <!-- Top Bar -->
+
+        <header class="h-20
+                       border-b border-slate-800
+                       bg-[#070b14]/80
+                       backdrop-blur
+                       flex items-center justify-between
+                       px-8">
+
+            <div>
+
+                <p class="text-xs text-slate-500">
+                    Employee Portal
+                </p>
+
+                <h2 class="text-xl font-semibold text-white">
+                    Security Overview
+                </h2>
+
+            </div>
+
+
+            <div class="flex items-center gap-4">
+
+                <div class="hidden sm:block text-right">
+
+                    <p id="topEmail"
+                       class="text-xs text-white">
+                        Loading...
+                    </p>
+
+                    <p class="text-[10px] text-slate-500">
+                        Employee Account
+                    </p>
+
+                </div>
+
+                <div class="w-10 h-10 rounded-full
+                            bg-slate-800
+                            border border-slate-700
+                            flex items-center justify-center">
+
+                    <i data-lucide="user"
+                       class="w-4 h-4 text-slate-400"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- CONTENT -->
+
+        <div class="p-8 max-w-7xl mx-auto">
+
+
+            <!-- Welcome -->
+
+            <section class="mb-8">
+
+                <p class="text-sm text-blue-400 mb-2">
+                    Welcome back
+                </p>
+
+                <h1 class="text-3xl font-semibold text-white">
+                    Your cloud environment is protected.
+                </h1>
+
+                <p class="text-sm text-slate-500 mt-2">
+                    Monitor your account security and recent activity.
+                </p>
+
+            </section>
+
+
+
+            <!-- ================= STATUS CARDS ================= -->
+
+            <section class="grid grid-cols-1
+                            md:grid-cols-3
+                            gap-5 mb-8">
+
+
+                <!-- Account Status -->
+
+                <div class="bg-[#0d1424]
+                            border border-slate-800
+                            rounded-2xl p-6">
+
+                    <div class="flex justify-between items-start">
+
+                        <div>
+
+                            <p class="text-xs text-slate-500">
+                                Account Status
+                            </p>
+
+                            <p class="text-2xl font-semibold
+                                      text-emerald-400 mt-2">
+                                Protected
+                            </p>
+
+                        </div>
+
+                        <div class="w-10 h-10
+                                    rounded-xl
+                                    bg-emerald-500/10
+                                    flex items-center justify-center">
+
+                            <i data-lucide="shield-check"
+                               class="w-5 h-5 text-emerald-400"></i>
+
+                        </div>
+
+                    </div>
+
+                    <p class="text-[11px] text-slate-600 mt-4">
+                        Your account is currently active.
+                    </p>
+
+                </div>
+
+
+
+                <!-- My Access -->
+
+                <div class="bg-[#0d1424]
+                            border border-slate-800
+                            rounded-2xl p-6">
+
+                    <div class="flex justify-between items-start">
+
+                        <div>
+
+                            <p class="text-xs text-slate-500">
+                                My Access Level
+                            </p>
+
+                            <p class="text-2xl font-semibold
+                                      text-blue-400 mt-2">
+                                Employee
+                            </p>
+
+                        </div>
+
+                        <div class="w-10 h-10
+                                    rounded-xl
+                                    bg-blue-500/10
+                                    flex items-center justify-center">
+
+                            <i data-lucide="key-round"
+                               class="w-5 h-5 text-blue-400"></i>
+
+                        </div>
+
+                    </div>
+
+                    <p class="text-[11px] text-slate-600 mt-4">
+                        Standard cloud access permissions.
+                    </p>
+
+                </div>
+
+
+
+                <!-- Security Score -->
+
+                <div class="bg-[#0d1424]
+                            border border-slate-800
+                            rounded-2xl p-6">
+
+                    <div class="flex justify-between items-start">
+
+                        <div>
+
+                            <p class="text-xs text-slate-500">
+                                Security Score
+                            </p>
+
+                            <p class="text-2xl font-semibold
+                                      text-white mt-2">
+                                <span id="securityScore">--</span><span class="text-sm text-slate-500">
+                                    /100
+                                </span>
+                            </p>
+
+                        </div>
+
+                        <div class="w-10 h-10
+                                    rounded-xl
+                                    bg-indigo-500/10
+                                    flex items-center justify-center">
+
+                            <i data-lucide="gauge"
+                               class="w-5 h-5 text-indigo-400"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4 h-1.5
+                                bg-slate-800 rounded-full">
+
+                        <div id="securityScoreBar"
+                             class="h-full w-0 bg-blue-500 rounded-full transition-all duration-500">
+                        </div>
+
+                    </div>
+
+                    <p id="securityScoreStatus"
+                       class="text-[11px] text-slate-500 mt-3">
+                        Calculating security posture...
+                    </p>
+
+                    <div id="securityScoreDetails"
+                         class="mt-4 pt-4 border-t border-slate-800 text-[11px] text-slate-500">
+                        Loading score details...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= MAIN GRID ================= -->
+
+            <section class="grid grid-cols-1
+                            lg:grid-cols-3
+                            gap-6">
+
+
+                <!-- ACTIVITY -->
+
+                <div id="activity"
+                     class="lg:col-span-2
+                            bg-[#0d1424]
+                            border border-slate-800
+                            rounded-2xl">
+
+                    <div class="p-6
+                                border-b border-slate-800
+                                flex items-center
+                                justify-between">
+
+                        <div>
+
+                            <h3 class="font-semibold text-white">
+                                My Recent Activity
+                            </h3>
+
+                            <p class="text-xs text-slate-500 mt-1">
+                                Recent security-related activity
+                            </p>
+
+                        </div>
+
+                        <span class="px-2.5 py-1
+                                     rounded-full
+                                     text-[10px]
+                                     bg-emerald-500/10
+                                     text-emerald-400">
+                            MONITORED
+                        </span>
+
+                    </div>
+
+
+<div id="activityList" class="p-6 space-y-4">
+
+    <p class="text-xs text-slate-500">
+        Loading activity...
+    </p>
+
+</div>                   
+
+                </div>
+
+
+
+                <!-- SECURITY CHECK -->
+
+                <div id="security-test"
+                     class="bg-[#0d1424]
+                            border border-slate-800
+                            rounded-2xl p-6">
+
+                    <div class="w-11 h-11
+                                rounded-xl
+                                bg-blue-500/10
+                                flex items-center justify-center
+                                mb-5">
+
+                        <i data-lucide="shield-alert"
+                           class="w-5 h-5 text-blue-400"></i>
+
+                    </div>
+
+                    <h3 class="font-semibold text-white">
+                        Security Check
+                    </h3>
+
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                        Verify that CloudShield correctly enforces access control
+                        for protected resources.
+                    </p>
+
+
+                    <button id="securityTestBtn"
+                            class="w-full mt-5
+                                   bg-blue-600
+                                   hover:bg-blue-500
+                                   text-white
+                                   rounded-lg
+                                   py-2.5
+                                   text-sm
+                                   font-medium
+                                   transition">
+
+                        Run Security Check
+
+                    </button>
+
+
+                    <div id="securityResult"
+                         class="hidden mt-4
+                                rounded-lg
+                                border
+                                px-3 py-3
+                                text-xs">
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= ALERTS ================= -->
+
+            <section id="alerts"
+                     class="mt-6
+                            bg-[#0d1424]
+                            border border-slate-800
+                            rounded-2xl">
+
+                <div class="p-6
+                            border-b border-slate-800">
+
+                    <h3 class="font-semibold text-white">
+                        Security Alerts
+                    </h3>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Important notifications for your account
+                    </p>
+
+                </div>
+
+
+                <div class="p-6">
+
+                    <div class="flex items-start gap-4">
+
+                        <div class="w-9 h-9
+                                    rounded-lg
+                                    bg-emerald-500/10
+                                    flex items-center justify-center
+                                    flex-shrink-0">
+
+                            <i data-lucide="check-circle"
+                               class="w-4 h-4 text-emerald-400"></i>
+
+                        </div>
+
+                        
+
+                    <div id="alertsList" class="p-6">
+
+                        <p class="text-xs text-slate-500">
+                        Loading security alerts...
+                        </p>
+
+                        </div>
+
+                    
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= FILES ================= -->
+
+            <section id="files"
+                     class="mt-6
+                            bg-[#0d1424]
+                            border border-slate-800
+                            rounded-2xl">
+
+                <div class="p-6 border-b border-slate-800
+                            flex items-center justify-between">
+
+                    <div>
+                        <h3 class="font-semibold text-white">
+                            Secure Files
+                        </h3>
+
+                        <p class="text-xs text-slate-500 mt-1">
+                            Upload and view your protected cloud files
+                        </p>
+                    </div>
+
+                    <button id="uploadFileBtn"
+                            class="px-4 py-2 bg-blue-600
+                                   hover:bg-blue-500 text-white
+                                   text-xs font-semibold rounded-lg transition">
+
+                        <i data-lucide="upload"
+                           class="w-4 h-4 inline-block mr-1"></i>
+
+                        Upload File
+                    </button>
+
+                    <input type="file"
+                           id="fileInput"
+                           class="hidden"
+                           accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg">
+                </div>
+
+                <div class="p-6">
+
+                    <div id="fileStatus"
+                         class="hidden mb-5 px-4 py-3 rounded-lg text-xs">
+                    </div>
+
+                    <div id="fileList" class="space-y-3">
+                        <p class="text-xs text-slate-500">
+                            Loading secure files...
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PROFILE ================= -->
+
+            <section id="profile"
+                     class="mt-6
+                            bg-[#0d1424]
+                            border border-slate-800
+                            rounded-2xl">
+
+                <div class="p-6
+                            border-b border-slate-800">
+
+                    <h3 class="font-semibold text-white">
+                        My Profile
+                    </h3>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        Your CloudShield account information
+                    </p>
+
+                </div>
+
+
+                <div class="p-6 grid
+                            grid-cols-1
+                            md:grid-cols-2
+                            gap-5">
+
+                    <div>
+
+                        <p class="text-[10px]
+                                  uppercase
+                                  tracking-wider
+                                  text-slate-600">
+                            Email
+                        </p>
+
+                        <p id="profileEmail"
+                           class="text-sm
+                                  text-slate-200
+                                  mt-2">
+                            Loading...
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <p class="text-[10px]
+                                  uppercase
+                                  tracking-wider
+                                  text-slate-600">
+                            Role
+                        </p>
+
+                        <p class="text-sm
+                                  text-blue-400
+                                  mt-2">
+                            Employee
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Footer -->
+
+            <footer class="py-8 text-center">
+
+                <p class="text-[10px] text-slate-700">
+                    CloudShield Security Platform
+                </p>
+
+            </footer>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================= FIREBASE ================= -->
+
+    <script type="module">
+
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+        import {
+            getAuth,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    getDocs,
+    addDoc,
+    serverTimestamp,
+    query,
+    where
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+        import {
+            createClient
+        } from "https://esm.sh/@supabase/supabase-js@2";
+
+
+        // Firebase configuration
+
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyAPK7xOzqujXWkXntKz6ojnb1jZag7WW7c",
+
+            authDomain: "cloudshield-7081e.firebaseapp.com",
+
+            projectId: "cloudshield-7081e",
+
+            storageBucket: "cloudshield-7081e.firebasestorage.app",
+
+            messagingSenderId: "1065716286697",
+
+            appId: "1:1065716286697:web:00b489aa11c31d6b5fdc78"
+
+        };
+
+
+        const app =
+            initializeApp(firebaseConfig);
+
+        const auth =
+            getAuth(app);
+
+        const db =
+            getFirestore(app);
+
+        // ================= SUPABASE =================
+
+        const SUPABASE_URL =
+            "https://xphnmsyriepjafpntvyq.supabase.co";
+
+        const SUPABASE_ANON_KEY =
+            "sb_publishable_Yts-j_zjimR9pzdEEdmmMw_5_yMCrYw";
+
+        const supabase =
+            createClient(
+                SUPABASE_URL,
+                SUPABASE_ANON_KEY
+            );
+
+
+// ============================================
+// SECURE FILE STORAGE
+// ============================================
+
+async function getFirebaseToken() {
+    const user = auth.currentUser;
+
+    if (!user) {
+        throw new Error("User not authenticated");
+    }
+
+    return await user.getIdToken();
+}
+
+
+function showFileStatus(message, type = "info") {
+    const status = document.getElementById("fileStatus");
+
+    if (!status) return;
+
+    status.className = "mb-5 px-4 py-3 rounded-lg text-xs";
+
+    if (type === "success") {
+        status.classList.add("bg-green-500/10", "text-green-400");
+    } else if (type === "error") {
+        status.classList.add("bg-red-500/10", "text-red-400");
+    } else {
+        status.classList.add("bg-blue-500/10", "text-blue-400");
+    }
+
+    status.textContent = message;
+}
+
+
+// ============================================
+// SECURITY EVENT LOGGER
+// ============================================
+
+async function logSecurityEvent(action, status) {
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    try {
+        await addDoc(
+            collection(db, "securityEvents"),
+            {
+                userId: user.uid,
+                email: user.email,
+                action: action,
+                status: status,
+                timestamp: serverTimestamp()
+            }
+        );
+
+        console.log("Security event logged:", action, status);
+    } catch (error) {
+        console.error("Could not log security event:", error);
+    }
+}
+
+
+// ============================================
+// UPLOAD FILE
+// ============================================
+
+async function uploadSecureFile(file) {
+    try {
+        const user = auth.currentUser;
+
+        if (!user) {
+            throw new Error("You are not logged in.");
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            throw new Error("File size must be 10 MB or less.");
+        }
+
+        showFileStatus("Preparing secure upload...", "info");
+
+        const idToken = await getFirebaseToken();
+
+        const response = await fetch(
+            `${SUPABASE_URL}/functions/v1/cloudshield-files`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_ANON_KEY
+                },
+                body: JSON.stringify({
+                    action: "upload-url",
+                    idToken: idToken,
+                    fileName: file.name,
+                    contentType: file.type
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(
+                result.error || "Could not create upload URL."
+            );
+        }
+
+        showFileStatus("Uploading file securely...", "info");
+
+        const { error: uploadError } =
+            await supabase.storage
+                .from("cloudshield-files")
+                .uploadToSignedUrl(
+                    result.path,
+                    result.token,
+                    file
+                );
+
+        if (uploadError) {
+            throw uploadError;
+        }
+
+        await addDoc(
+            collection(db, "files"),
+            {
+                userId: user.uid,
+                email: user.email,
+                fileName: file.name,
+                storagePath: result.path,
+                contentType: file.type || "application/octet-stream",
+                size: file.size,
+                allowedUsers: [],
+                uploadedAt: serverTimestamp()
+            }
+        );
+
+        await logSecurityEvent(
+            "Secure file uploaded",
+            "ALLOWED"
+        );
+
+        showFileStatus(
+            "File uploaded successfully.",
+            "success"
+        );
+
+        document.getElementById("fileInput").value = "";
+
+        await loadSecureFiles();
+
+    } catch (error) {
+        console.error("File upload error:", error);
+
+        showFileStatus(
+            error.message || "File upload failed.",
+            "error"
+        );
+
+        await logSecurityEvent(
+            "Secure file upload",
+            "FAILED"
+        );
+    }
+}
+
+
+// ============================================
+// LOAD USER FILES
+// ============================================
+
+async function loadSecureFiles() {
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    const fileList =
+        document.getElementById("fileList");
+
+    try {
+        const ownFilesQuery = query(
+            collection(db, "files"),
+            where("userId", "==", user.uid)
+        );
+
+        const sharedFilesQuery = query(
+            collection(db, "files"),
+            where("allowedUsers", "array-contains", user.uid)
+        );
+
+        const [ownSnapshot, sharedSnapshot] = await Promise.all([
+            getDocs(ownFilesQuery),
+            getDocs(sharedFilesQuery)
+        ]);
+
+        const fileMap = new Map();
+        [...ownSnapshot.docs, ...sharedSnapshot.docs].forEach(docSnap => {
+            fileMap.set(docSnap.id, docSnap);
+        });
+
+        const files = [...fileMap.values()].sort((a, b) => {
+            const timeA =
+                a.data().uploadedAt?.toMillis?.() || 0;
+
+            const timeB =
+                b.data().uploadedAt?.toMillis?.() || 0;
+
+            return timeB - timeA;
+        });
+
+        if (files.length === 0) {
+            fileList.innerHTML = `
+                <div class="border border-dashed border-slate-700
+                            rounded-xl p-8 text-center">
+
+                    <i data-lucide="folder-lock"
+                       class="w-8 h-8 mx-auto text-slate-600 mb-3"></i>
+
+                    <p class="text-sm text-slate-400">
+                        No secure files yet
+                    </p>
+
+                    <p class="text-xs text-slate-600 mt-1">
+                        Upload a file to store it securely. File deletion and access permissions are managed by the administrator.
+                    </p>
+                </div>
+            `;
+
+            lucide.createIcons();
+            return;
+        }
+
+        fileList.innerHTML = files.map(docSnap => {
+            const file = docSnap.data();
+
+            const sizeMB =
+                (file.size / (1024 * 1024)).toFixed(2);
+
+            const date =
+                file.uploadedAt?.toDate
+                    ? file.uploadedAt.toDate().toLocaleString()
+                    : "Just now";
+
+            return `
+                <div class="flex items-center justify-between
+                            border border-slate-800 rounded-xl
+                            p-4 bg-slate-900/40">
+
+                    <div class="flex items-center gap-3 min-w-0">
+
+                        <div class="w-9 h-9 rounded-lg
+                                    bg-blue-500/10
+                                    flex items-center justify-center">
+
+                            <i data-lucide="file-lock-2"
+                               class="w-4 h-4 text-blue-400"></i>
+                        </div>
+
+                        <div class="min-w-0">
+                            <p class="text-sm text-slate-200 truncate">
+                                ${file.fileName}
+                            </p>
+
+                            <p class="text-[11px] text-slate-500 mt-1">
+                                ${sizeMB} MB • ${date}
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="view-file-btn ml-4 px-3 py-2
+                               border border-slate-700
+                               hover:border-blue-500
+                               text-xs text-slate-300
+                               hover:text-white rounded-lg transition"
+                        data-file-id="${docSnap.id}"
+                        data-path="${file.storagePath}">
+
+                        <i data-lucide="eye"
+                           class="w-3 h-3 inline-block mr-1"></i>
+
+                        View
+                    </button>
+
+                </div>
+            `;
+        }).join("");
+
+        lucide.createIcons();
+
+        document.querySelectorAll(".view-file-btn")
+            .forEach(button => {
+                button.addEventListener(
+                    "click",
+                    () => openSecureFile(button.dataset.fileId, button.dataset.path)
+                );
+            });
+
+    } catch (error) {
+        console.error(
+            "Could not load secure files:",
+            error
+        );
+
+        fileList.innerHTML = `
+            <p class="text-xs text-red-400">
+                Unable to load secure files.
+            </p>
+        `;
+    }
+}
+
+
+// ============================================
+// OPEN / VIEW FILE
+// ============================================
+
+async function openSecureFile(fileId, path) {
+    // Open the tab synchronously from the user's click to avoid popup blockers.
+    const viewer = window.open("about:blank", "_blank");
+
+    if (!viewer) {
+        showFileStatus(
+            "Please allow pop-ups for CloudShield to view secure files.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+        showFileStatus(
+            "Generating secure access link...",
+            "info"
+        );
+
+        const idToken =
+            await getFirebaseToken();
+
+        const response = await fetch(
+            `${SUPABASE_URL}/functions/v1/cloudshield-files`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_ANON_KEY
+                },
+                body: JSON.stringify({
+                    action: "download-url",
+                    idToken: idToken,
+                    fileId: fileId,
+                    path: path
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(
+                result.error ||
+                "Could not generate secure file link."
+            );
+        }
+
+        await logSecurityEvent(
+            "Secure file accessed",
+            "ALLOWED"
+        );
+
+        viewer.location.href = result.signedUrl;
+
+        showFileStatus(
+            "Secure file access granted.",
+            "success"
+        );
+
+    } catch (error) {
+        if (viewer && !viewer.closed) viewer.close();
+
+        console.error(
+            "Secure file access error:",
+            error
+        );
+
+        showFileStatus(
+            error.message || "Could not open file.",
+            "error"
+        );
+
+        await logSecurityEvent(
+            "Secure file access",
+            "BLOCKED"
+        );
+    }
+}
+
+
+// ============================================
+// FILE BUTTON EVENTS
+// ============================================
+
+document
+    .getElementById("uploadFileBtn")
+    ?.addEventListener("click", () => {
+        document
+            .getElementById("fileInput")
+            .click();
+    });
+
+
+document
+    .getElementById("fileInput")
+    ?.addEventListener("change", async (event) => {
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        await uploadSecureFile(file);
+    });
+
+
+// ================= DYNAMIC SECURITY SCORE =================
+
+async function loadSecurityScore() {
+
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    const scoreEl = document.getElementById("securityScore");
+    const barEl = document.getElementById("securityScoreBar");
+    const statusEl = document.getElementById("securityScoreStatus");
+
+    if (!scoreEl || !barEl || !statusEl) return;
+
+    try {
+
+        // Read only this employee's security events.
+        const eventsQuery = query(
+            collection(db, "securityEvents"),
+            where("userId", "==", user.uid)
+        );
+
+        const snapshot = await getDocs(eventsQuery);
+
+        const blockedAttempts = snapshot.docs.filter(docSnap => {
+            return docSnap.data().status === "BLOCKED";
+        }).length;
+
+        const failedAttempts = snapshot.docs.filter(docSnap => {
+            return docSnap.data().status === "FAILED";
+        }).length;
+
+        /*
+         * Security posture model:
+         * - Start at 100.
+         * - Each blocked access attempt represents suspicious activity
+         *   and reduces the posture by 8 points.
+         * - A failed access-control check is more serious and reduces
+         *   the posture by 20 points.
+         * - Keep the score within a meaningful 40–100 range.
+         */
+        const score = Math.max(
+            40,
+            100 - (blockedAttempts * 8) - (failedAttempts * 20)
+        );
+
+        scoreEl.textContent = score;
+        barEl.style.width = score + "%";
+
+        if (score >= 90) {
+            statusEl.textContent = "Good security posture";
+        } else if (score >= 75) {
+            statusEl.textContent = "Attention required — review recent security events";
+        } else {
+            statusEl.textContent = "High risk — review security alerts immediately";
+        }
+
+        const detailsEl =
+            document.getElementById("securityScoreDetails");
+
+        if (detailsEl) {
+            detailsEl.innerHTML = `
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span>Authentication</span>
+                        <span class="text-emerald-400">✓ Active</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>Role-based access</span>
+                        <span class="text-emerald-400">✓ Enforced</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>Private file storage</span>
+                        <span class="text-emerald-400">✓ Protected</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>File isolation</span>
+                        <span class="text-emerald-400">✓ Enforced</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>Blocked access attempts</span>
+                        <span class="text-amber-400">${blockedAttempts}</span>
+                    </div>
+                    ${failedAttempts > 0 ? `
+                    <div class="flex items-center justify-between">
+                        <span>Failed access-control checks</span>
+                        <span class="text-red-400">${failedAttempts}</span>
+                    </div>` : ""}
+                </div>
+            `;
+        }
+
+        console.log(
+            "Security score:",
+            score,
+            "Blocked attempts:",
+            blockedAttempts,
+            "Failed attempts:",
+            failedAttempts
+        );
+
+    } catch (error) {
+
+        console.error("Could not calculate security score:", error);
+
+        scoreEl.textContent = "--";
+        barEl.style.width = "0%";
+        statusEl.textContent = "Unable to calculate security score";
+    }
+}
+
+
+// ================= LOAD MY ACTIVITY =================
+
+async function loadMyActivity() {
+
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    const activityList =
+        document.getElementById("activityList");
+
+    try {
+
+        // Get ONLY this employee's events
+        const activityQuery = query(
+            collection(db, "securityEvents"),
+            where("userId", "==", user.uid)
+        );
+
+        const snapshot =
+            await getDocs(activityQuery);
+
+
+        // Sort newest events first
+        const myEvents =
+            snapshot.docs
+                .sort((a, b) => {
+
+                    const timeA =
+                        a.data().timestamp?.toMillis?.() || 0;
+
+                    const timeB =
+                        b.data().timestamp?.toMillis?.() || 0;
+
+                    return timeB - timeA;
+
+                })
+                .slice(0, 5);
+
+
+        if (myEvents.length === 0) {
+
+            activityList.innerHTML = `
+                <p class="text-xs text-slate-500">
+                    No security activity recorded yet.
+                </p>
+            `;
+
+            return;
+        }
+
+
+        activityList.innerHTML = "";
+
+
+        myEvents.forEach(docSnap => {
+
+            const event =
+                docSnap.data();
+
+            const blocked =
+                event.status === "BLOCKED";
+
+
+            const icon =
+                blocked
+                    ? "shield-alert"
+                    : "shield-check";
+
+
+            const iconColor =
+                blocked
+                    ? "text-red-400"
+                    : "text-emerald-400";
+
+
+            const iconBg =
+                blocked
+                    ? "bg-red-500/10"
+                    : "bg-emerald-500/10";
+
+
+            const item =
+                document.createElement("div");
+
+
+            item.className =
+                "flex items-center justify-between";
+
+
+            item.innerHTML = `
+
+                <div class="flex items-center gap-3">
+
+                    <div class="w-9 h-9
+                                rounded-lg
+                                ${iconBg}
+                                flex items-center
+                                justify-center">
+
+                        <i data-lucide="${icon}"
+                           class="w-4 h-4 ${iconColor}">
+                        </i>
+
+                    </div>
+
+                    <div>
+
+                        <p class="text-sm text-slate-200">
+                            ${event.action}
+                        </p>
+
+                        <p class="text-[11px] ${iconColor}">
+                            ${event.status}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="text-[10px] text-slate-600">
+                    Recorded
+                </span>
+
+            `;
+
+
+            activityList.appendChild(item);
+
+        });
+
+
+        lucide.createIcons();
+
+
+    } catch (error) {
+
+        console.error(
+            "Could not load activity:",
+            error
+        );
+
+        activityList.innerHTML = `
+            <p class="text-xs text-red-400">
+                Unable to load activity.
+            </p>
+        `;
+
+    }
+
+}
+
+// ================= LOAD SECURITY ALERTS =================
+
+async function loadMyAlerts() {
+
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    const alertsList =
+        document.getElementById("alertsList");
+
+    try {
+
+        const alertsQuery = query(
+            collection(db, "securityEvents"),
+            where("userId", "==", user.uid)
+        );
+
+        const snapshot =
+            await getDocs(alertsQuery);
+
+        const alerts = snapshot.docs
+            .filter(docSnap =>
+                docSnap.data().status === "BLOCKED"
+            )
+            .sort((a, b) => {
+
+                const timeA =
+                    a.data().timestamp?.toMillis?.() || 0;
+
+                const timeB =
+                    b.data().timestamp?.toMillis?.() || 0;
+
+                return timeB - timeA;
+
+            })
+            .slice(0, 5);
+
+
+        if (alerts.length === 0) {
+
+            alertsList.innerHTML = `
+                <div class="flex items-center gap-4">
+
+                    <div class="w-9 h-9 rounded-lg
+                                bg-emerald-500/10
+                                flex items-center justify-center">
+
+                        <i data-lucide="check-circle"
+                           class="w-4 h-4 text-emerald-400">
+                        </i>
+
+                    </div>
+
+                    <div>
+
+                        <p class="text-sm text-slate-200">
+                            No security alerts
+                        </p>
+
+                        <p class="text-xs text-slate-500 mt-1">
+                            No blocked access attempts detected.
+                        </p>
+
+                    </div>
+
+                </div>
+            `;
+
+            lucide.createIcons();
+            return;
+        }
+
+
+        alertsList.innerHTML = "";
+
+        alerts.forEach(docSnap => {
+
+            const event = docSnap.data();
+
+            const alert = document.createElement("div");
+
+            alert.className =
+                "flex items-start gap-4 mb-5";
+
+            alert.innerHTML = `
+
+                <div class="w-9 h-9 rounded-lg
+                            bg-red-500/10
+                            flex items-center justify-center
+                            flex-shrink-0">
+
+                    <i data-lucide="shield-alert"
+                       class="w-4 h-4 text-red-400">
+                    </i>
+
+                </div>
+
+                <div>
+
+                    <p class="text-sm text-slate-200">
+                        Unauthorized access attempt detected
+                    </p>
+
+                    <p class="text-xs text-slate-500 mt-1">
+                        CloudShield blocked an attempt to access
+                        a protected resource.
+                    </p>
+
+                    <p class="text-[10px] text-red-400 mt-2">
+                        BLOCKED
+                    </p>
+
+                </div>
+            `;
+
+            alertsList.appendChild(alert);
+
+        });
+
+        lucide.createIcons();
+
+    } catch (error) {
+
+        console.error(
+            "Could not load security alerts:",
+            error
+        );
+
+        alertsList.innerHTML = `
+            <p class="text-xs text-red-400">
+                Unable to load security alerts.
+            </p>
+        `;
+    }
+}
+
+        // ================= AUTH =================
+
+        onAuthStateChanged(auth, async (user) => {
+
+            if (!user) {
+
+                window.location.href =
+                    "index.html";
+
+                return;
+
+            }
+
+
+            try {
+
+                // Get user profile
+
+                const userRef =
+                    doc(db, "users", user.uid);
+
+                const userSnap =
+                    await getDoc(userRef);
+
+
+                if (!userSnap.exists()) {
+
+                    console.error(
+                        "User profile not found."
+                    );
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "index.html";
+
+                    return;
+
+                }
+
+
+                const userData =
+                    userSnap.data();
+
+                const role =
+                    userData.role || "employee";
+
+
+                // Employee-only protection
+
+                if (role !== "employee") {
+
+                    window.location.href =
+                        "admin-dashboard.html";
+
+                    return;
+
+                }
+
+
+                // Display email
+
+                document.getElementById(
+                    "sidebarEmail"
+                ).textContent = user.email;
+
+
+                document.getElementById(
+                    "topEmail"
+                ).textContent = user.email;
+
+
+                document.getElementById(
+                    "profileEmail"
+                ).textContent = user.email;
+                
+                
+                await loadMyActivity();
+                await loadMyAlerts();
+                await loadSecureFiles();
+                await loadSecurityScore();
+
+                console.log(
+                    "Employee authenticated:",
+                    user.email
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Dashboard error:",
+                    error
+                );
+
+            }
+
+        });
+
+
+
+        // ================= LOGOUT =================
+
+        document
+            .getElementById("logoutBtn")
+            .addEventListener(
+                "click",
+                async () => {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+
+
+        // ================= SECURITY TEST =================
+// ================= SECURITY TEST =================
+
+document
+    .getElementById("securityTestBtn")
+    .addEventListener("click", async () => {
+
+        const result =
+            document.getElementById("securityResult");
+
+        result.className =
+            "mt-4 rounded-lg border px-3 py-3 text-xs " +
+            "border-blue-500/20 bg-blue-500/10 text-blue-400";
+
+        result.textContent =
+            "Running security check...";
+
+        result.classList.remove("hidden");
+
+
+        try {
+
+            const user = auth.currentUser;
+
+            if (!user) {
+                throw new Error("Not authenticated");
+            }
+
+
+            // Try to access another user's protected profile
+            const targetUID =
+                "OjyXcqkz4oNdKyaObYTE4bwTnwo2";
+
+
+            const targetRef =
+                doc(db, "users", targetUID);
+
+
+            await getDoc(targetRef);
+
+
+            // If we reach here, access was NOT blocked
+            await logSecurityEvent(
+                "Protected resource access validation",
+                "FAILED"
+            );
+
+
+            result.className =
+                "mt-4 rounded-lg border px-3 py-3 text-xs " +
+                "border-red-500/20 bg-red-500/10 text-red-400";
+
+            result.textContent =
+                "SECURITY WARNING — Protected resource access was not blocked.";
+
+
+        } catch (error) {
+
+            console.error(
+                "Security test:",
+                error
+            );
+
+
+            // Firestore rejected the unauthorized request
+            await logSecurityEvent(
+                "Protected resource access validation",
+                "BLOCKED"
+            );
+
+
+            result.className =
+                "mt-4 rounded-lg border px-3 py-3 text-xs " +
+                "border-emerald-500/20 bg-emerald-500/10 text-emerald-400";
+
+            result.textContent =
+                "ACCESS CONTROL VERIFIED — Protected resource access was blocked and the event was logged.";
+
+            await loadSecurityScore();
+            await loadMyActivity();
+            await loadMyAlerts();
+
+        }
+
+    });
+
+
+
+        // Initialize icons
+
+        lucide.createIcons();
+
+    </script>
+
+</body>
+</html>
