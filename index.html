@@ -427,15 +427,13 @@
                         <button
                             type="submit"
                             class="w-full
-                                   bg-gradient-to-r
-                                   from-blue-600
-                                   to-blue-500
-                                   hover:from-blue-500
-                                   hover:to-cyan-500
+                                   bg-blue-600
+                                   hover:bg-blue-500
                                    py-3
                                    rounded-lg
                                    text-sm
                                    font-semibold
+                                   text-white
                                    transition-all
                                    shadow-lg
                                    shadow-blue-500/10">
@@ -686,12 +684,15 @@
         import { initializeApp }
         from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-        import {
-            getAuth,
-            createUserWithEmailAndPassword,
-            signInWithEmailAndPassword
-        }
-        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut,
+    getIdToken,
+    signInWithEmailAndPassword,
+    setPersistence,
+    browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
       import {
     getFirestore,
@@ -851,7 +852,6 @@ loginForm.addEventListener("submit", async (e) => {
         document.getElementById("loginPassword").value;
 
     try {
-
         // Authenticate user
         const userCredential =
             await signInWithEmailAndPassword(
@@ -872,7 +872,7 @@ loginForm.addEventListener("submit", async (e) => {
         }
 
         const userData = userSnap.data();
-        const role = userData.role || "employee";
+        const role = String(userData.role || "employee").trim().toLowerCase();
 
         showMessage(
             "Authentication successful. Redirecting...",
